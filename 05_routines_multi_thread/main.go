@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func contador(tipo string) {
+func contador(tipo string) { // tipo de chamada da funcao - com ou sem GO routine
 	for i := 0; i < 5; i++ {
 		fmt.Println(tipo, i)
 		time.Sleep(time.Second)
@@ -14,9 +14,9 @@ func contador(tipo string) {
 	}
 }
 
-func main() {
-	go contador("sem go routine")
-	go contador("com go routine")
+func main() { // Funcao Main é rodada em uma Thread
+	go contador("sem go routine") // Routine rodando em paralelismo
+	go contador("com go routine") // Routine rodando em uma outra MultiThread
 
 	fmt.Println("Hello, world!")
 	fmt.Println("Hello, space!")
@@ -27,7 +27,7 @@ func main() {
 	runtime.GOMAXPROCS(1) // Estipula o numero maximo de CPUs a serem utilizadas para execução do programa
 	fmt.Println("Começou...")
 
-	go func() { // GoRoutine
+	go func() { // GoRoutine (Isso seria rodado em uma Thread separada)
 		for { // FOR sem condição, é um loop infinito
 
 		}
